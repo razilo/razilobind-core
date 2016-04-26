@@ -26,13 +26,14 @@ export default class Traverser {
             }
         }
 
-		// do not traverse parent elements with flag set, accept root binded elements
-		// if (!!element.hasAttribute && element.hasAttribute('no-traverse') && !element.razilovm) return;
-		if (!!element.hasAttribute && element.hasAttribute('no-traverse')) return;
-
-        // always go deep! <o_0>
+        // go deep! <o_0>
 		if (element.childNodes) {
-			for (let i = 0; i <  element.childNodes.length; i++) this.traverse(element.childNodes[i], model);
+			for (let i = 0; i <  element.childNodes.length; i++)
+			{
+				// skip those not wanting to be traversed
+				if (!!element.childNodes[i].hasAttribute && element.childNodes[i].hasAttribute('no-traverse')) continue;
+				this.traverse(element.childNodes[i], model);
+			}
 		}
 	}
 }
