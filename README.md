@@ -5,10 +5,10 @@
 
 ES6 JS/HTML binding library for creating dynamic web applications through HTML attribute binding. Made up of 4 libraries, puled in via a parent package that pulls in all required parts and configures as importable ES6 module 'RaziloBind'.
 
-* **[https://github.com/smiffy6969/razilobind-core](razilobind-core)** *(the main part)*, to traverse, detect and observe.
-* **[https://github.com/smiffy6969/razilobind-binder](razilobind-binder) [injectables]** *(the actual binders)*, binding object properties to elements to do various things.
-* **[https://github.com/smiffy6969/razilobind-resolver](razilobind-resolver) [injectables]** *(to parse attribute data)*, resolving attribute data to things like strings, numbers, objects, methods etc.
-* **[https://github.com/smiffy6969/razilobind-alterer](razilobind-alterer) [injectables]** *(to change things)*, altering resolved data to something else without affecting the model.
+* **[razilobind-core](https://github.com/smiffy6969/razilobind-core)** *(the main part)*, to traverse, detect and observe.
+* **[razilobind-binder](https://github.com/smiffy6969/razilobind-binder) [injectables]** *(the actual binders)*, binding object properties to elements to do various things.
+* **[razilobind-resolver](https://github.com/smiffy6969/razilobind-resolver) [injectables]** *(to parse attribute data)*, resolving attribute data to things like strings, numbers, objects, methods etc.
+* **[razilobind-alterer](https://github.com/smiffy6969/razilobind-alterer) [injectables]** *(to change things)*, altering resolved data to something else without affecting the model.
 
 This package **razilobind-core**, is the base functionality that binds, observes, traverses and detects, allowing injectables to be used on dom elements.
 
@@ -28,7 +28,7 @@ Because it's modular, it allows you to extend the core to auto configure (as we 
 ## Usage
 
 
-The recommended way to use core, is through the [https://github.com/smiffy6969/razilobind](smiffy6969/razilobind) package. This will give you the standard use and configure the tool with default injectables. This will also expose the library as razilobind as it extends this package and does the required config. Another addation in the parent package is the addition of the functions to load in custom binders directly (or pull in your own via imports). Should you wish to have more control, you can use this module directly and configure the core as you want it in your project as so...
+The recommended way to use core, is through the [smiffy6969/razilobind](https://github.com/smiffy6969/razilobind) package. This will give you the standard use and configure the tool with default injectables. This will also expose the library as razilobind as it extends this package and does the required config. Another addation in the parent package is the addition of the functions to load in custom binders directly (or pull in your own via imports). Should you wish to have more control, you can use this module directly and configure the core as you want it in your project as so...
 
 
 Pull in the module...
@@ -116,12 +116,12 @@ var foo = new RaziloBindCore({prefix: 'foo'});
 
 Thats up to you and what you want to do, I would recommend pulling in te parent package as the default binders will offer a level of standard functionality, things you should need. To find out what injectables are available, head on over to the following places.
 
-* **[https://github.com/smiffy6969/razilobind-binder](razilobind-binder)**, binding object properties to elements to do various things.
-* **[https://github.com/smiffy6969/razilobind-resolver](razilobind-resolver)**, resolving attribute data to things like strings, numbers, objects, methods etc.
-* **[https://github.com/smiffy6969/razilobind-alterer](razilobind-alterer)**, altering resolved data to something else without affecting the model.
+* **[razilobind-binder](https://github.com/smiffy6969/razilobind-binder)**, binding object properties to elements to do various things.
+* **[razilobind-resolver](https://github.com/smiffy6969/razilobind-resolver)**, resolving attribute data to things like strings, numbers, objects, methods etc.
+* **[razilobind-alterer](https://github.com/smiffy6969/razilobind-alterer)**, altering resolved data to something else without affecting the model.
 
 
 ## Can I Create my own Injectables?
 
 
-Sure, why not, you even get to choose how to inject them, if you want the default ones or just your own. You can do this by directly adding them to razilobind, or by injecting them into razilobind-core if you are extending core with your own module. See the necessary area listed above for details on how to create and inject binders, resolvers and alterers. 
+Sure, why not, you even get to choose how to inject them, if you want the default ones or just your own. You can do this by directly adding them to razilobind, or by injecting them into razilobind-core if you are extending core with your own module. See the necessary area listed above for details on how to create and inject binders, resolvers and alterers.
