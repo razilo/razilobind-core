@@ -2,7 +2,7 @@ import Traverser from './traverser.js'
 import Observer from './observer.js'
 
 /**
- * RaziloVM Binding Library
+ * RaziloBind Binding Library
  * Offers View-Model binding between js object and html view
  */
 export default class Core {
@@ -17,7 +17,7 @@ export default class Core {
 		if (!element) throw "Element not found, cannot bind to non-element";
 
 		// set basics
-		element.razilovm = this;
+		element.razilobind = this;
         this.model = Observer.object(object, this.update.bind(this), true);
         this.element = element;
 

@@ -6,14 +6,12 @@ export default class Observer {
 			set: function(target, prop, value) {
 				let old = target[prop];
 				target[prop] = value;
-				// if (prop == 'length' && !isNaN(old) && !isNaN(value) && (value == old -1 || value == old)) fn(prefix.indexOf('.') == prefix.length -1 ? prefix.substring(0, prefix.length -1) : prefix, old, value);
-				// else fn(prefix + prop, old, value);
 				fn(prefix + prop, old, value);
 				return true;
 			},
 			get: function(target, prop) {
 				let val = target[prop];
-				if (!!deep && val instanceof Object) return Observer.object(val, fn, deep, prefix + prop + '.');
+				if (!!deep && val instanceof Object && typeof prop === 'string') return Observer.object(val, fn, deep, prefix + prop + '.');
 				return val;
 			}
 		});
