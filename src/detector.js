@@ -11,7 +11,6 @@ export default class Detector {
 		var binders = [];
 		for (let name in Detector.defaultBinders) {
 			let binder = new Detector.defaultBinders[name](options, traverser);
-			binder.setup(options, traverser);
 			if (binder.detect(node)) binders.push(binder.build(model));
 		}
 
@@ -19,7 +18,6 @@ export default class Detector {
 		{
 			for (let name in Detector.customBinders) {
 				let binder = new Detector.customBinders[name](options, traverser);
-				binder.setup(options, traverser);
 				if (binder.detect(node)) binders.push(binder.build(model));
 			}
 		}

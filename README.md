@@ -25,6 +25,13 @@ The core is the basic part of the tool, it allows us to configure the tool with 
 Because it's modular, it allows you to extend the core to auto configure (as we do in razilobind package). It also allows you to build your own core, fork this one and still use the injectables. It is much more flexible to do it this way.
 
 
+## Whats Supported?
+
+
+Propert browsers are fully supported in their evergreen state, IE is supported down to IE9 through polyfills. Please ensure when compiling using babel, that you compile with the es2015-loose preset. This
+engine uses parent classes and constructors, as such IE support requires a compile that supports this, for IE9 up to EDGE you must use the es2015-loose preset in your package file.
+
+
 ## Usage
 
 
