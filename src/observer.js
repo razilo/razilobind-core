@@ -47,7 +47,8 @@ export default class Observer {
 			},
 			get: function(target, prop) {
 				let val = target[prop];
-				if (!!deep && val instanceof Object && typeof prop === 'string') return Observer.object(val, fn, deep, prefix + prop + '.');
+
+				if (!!deep && val instanceof Object && typeof prop === 'string' && val !== null && !(val instanceof Date)) return Observer.object(val, fn, deep, prefix + prop + '.');
 				return val;
 			}
 		});

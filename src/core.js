@@ -23,7 +23,7 @@ export default class Core {
 
 		// iterate over nodes
 		this.traverser = new Traverser(this.options);
-		this.traverser.traverse(this.element, this.model, this.object);
+		this.traverser.traverse(this.element, this.model, true);
 	}
 
     update(path, oldV, newV) {
