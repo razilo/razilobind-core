@@ -8,12 +8,12 @@ export default class Traverser {
 
 	traverse(element, model, initial) {
 		// check for binders and build observables map
-        var binders = this.options.noParentBind && initial ? [] : Detector.binders(element, model, this.options, this);
+        let binders = this.options.noParentBind && initial ? [] : Detector.binders(element, model, this.options, this);
 
 		// compile binders into a watch list (one binder instance only per element)
         if (binders.length > 0)
         {
-            for (var i = 0; i < binders.length; i++) {
+            for (let i = 0; i < binders.length; i++) {
                 if (binders[i].observables.length > 0)
                 {
                     for (let ii = 0; ii < binders[i].observables.length; ii++)
@@ -30,8 +30,7 @@ export default class Traverser {
 		if (element.childNodes) {
 			for (let i = 0; i <  element.childNodes.length; i++)
 			{
-				// skip those not wanting to be traversed
-				if (!!element.childNodes[i].parentNode.hasAttribute('no-traverse')) continue;
+				if (element.childNodes[i].nodeType !== 1) continue;
 				this.traverse(element.childNodes[i], model);
 			}
 		}

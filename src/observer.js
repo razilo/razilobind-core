@@ -37,19 +37,15 @@ export default class Observer {
 	 */
 	static proxy(obj, fn, deep, prefix) {
 		prefix = typeof prefix === 'undefined' ? '' : prefix;
-		if (typeof this.object === 'undefined') this.object = obj;
 		return new Proxy(obj, {
 			set: function(target, prop, value) {
 				let old = target[prop];
 				target[prop] = value;
-				fn(prefix + prop, old, value);
+				fn.call(this, prefix + prop, old, value);
 				return true;
 			},
 			get: function(target, prop) {
-				let val = target[prop];
-
-				if (!!deep && val instanceof Object && typeof prop === 'string' && val !== null && !(val instanceof Date)) return Observer.object(val, fn, deep, prefix + prop + '.');
-				return val;
+				return !deep || target[prop] == null || typeof target[prop] !== 'object' || target[prop] instanceof Date ? target[prop] : Observer.proxy(target[prop], fn, deep, prefix + prop + '.');
 			}
 		});
 	}

@@ -8,7 +8,7 @@ export default class Detector {
 	static binders(node, model, options, traverser) {
 		if (!Detector.defaultBinders || typeof Detector.defaultBinders !== 'object') return;
 
-		var binders = [];
+		let binders = [];
 		for (let name in Detector.defaultBinders) {
 			let binder = new Detector.defaultBinders[name](options, traverser);
 			if (binder.detect(node)) binders.push(binder.build(model));

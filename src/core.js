@@ -27,9 +27,9 @@ export default class Core {
 	}
 
     update(path, oldV, newV) {
-		var action = 'update';
-		var pathParts = path.split('.');
-		var pathEnd = pathParts[pathParts.length -1];
+		let action = 'update';
+		let pathParts = path.split('.');
+		let pathEnd = pathParts[pathParts.length -1];
 
 		// sort out arrys and objects
 		if (pathEnd === 'length')
@@ -40,14 +40,14 @@ export default class Core {
 		}
 		else if (typeof oldV === 'undefined' || typeof newV === 'undefined')
 		{
-			var model = this.model;
+			let model = this.model;
 			for (let i = 0; i < pathParts.length - 1; i++) model = model[pathParts[i]];
 
 			// if parent is object, also fire parent update and allow original to continue
 			if (typeof model.length === 'undefined')
 			{
-				var xPath = path.substring(0, path.length - pathEnd.length -1);
-				var xAction = typeof oldV === 'undefined' ? 'object-add' : 'object-remove';
+				let xPath = path.substring(0, path.length - pathEnd.length -1);
+				let xAction = typeof oldV === 'undefined' ? 'object-add' : 'object-remove';
 				if (typeof this.traverser.observables[xPath] !== 'undefined') for (let key in this.traverser.observables[xPath]) this.traverser.observables[xPath][key].update(oldV, xPath, xAction, pathEnd);
 			}
 		}
