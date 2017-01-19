@@ -48,10 +48,18 @@ export default class Core {
 			{
 				let xPath = path.substring(0, path.length - pathEnd.length -1);
 				let xAction = typeof oldV === 'undefined' ? 'object-add' : 'object-remove';
-				if (typeof this.traverser.observables[xPath] !== 'undefined') for (let key in this.traverser.observables[xPath]) this.traverser.observables[xPath][key].update(oldV, xPath, xAction, pathEnd);
+				this.cascade(oldV, xPath, xAction, pathEnd);
 			}
 		}
 
-		if (typeof this.traverser.observables[path] !== 'undefined') for (let key in this.traverser.observables[path]) this.traverser.observables[path][key].update(oldV, path, action);
+		this.cascade(oldV, path, action);
 	}
+
+    cascade(oldV, path, action, pathEnd) {
+        // ensure we cascade any changes back down the tree for objects and arrays
+        while (path.length > 0) {
+            if (typeof this.traverser.observables[path] !== 'undefined') for (let key in this.traverser.observables[path]) this.traverser.observables[path][key].update(oldV, path, action, pathEnd);
+            path = path.substring(0, path.lastIndexOf("."));
+        }
+    }
 }
