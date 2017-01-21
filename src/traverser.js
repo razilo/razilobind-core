@@ -26,13 +26,18 @@ export default class Traverser {
             }
         }
 
-        // go deep! <o_0>
-		if (element.childNodes) {
+        this.goDeep(element, model);
+	}
+
+    goDeep(element, model) {
+        // go deep! <o_0> Make sure we do not do this for loops (bind-for) as they will traverse
+        // themselves to stop stale binding bug on placeholder instead of parent looped results
+		if (element.childNodes && !element.hasAttribute('bind-for')) {
 			for (let i = 0; i <  element.childNodes.length; i++)
 			{
 				if (element.childNodes[i].nodeType !== 1) continue;
 				this.traverse(element.childNodes[i], model);
 			}
 		}
-	}
+    }
 }
